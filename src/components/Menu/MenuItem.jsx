@@ -1,6 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getQuantityById } from "../../redux/slices/cartSlice";
-import { AddToCartButton } from "../sharedUI/buttons/CartButtons";
+import {
+  addToCart,
+  decrementQuantity,
+  getQuantityById,
+  incrementQuantity,
+  removeFromCart,
+} from "../../redux/slices/cartSlice";
+import {
+  AddToCartButton,
+  DecrementButton,
+  IncrementButton,
+  RemoveFromCartButton,
+} from "../sharedUI/buttons/CartButtons";
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
@@ -19,6 +30,18 @@ function MenuItem({ pizza }) {
       soldOut,
     };
     dispatch(addToCart(item));
+  }
+
+  function handleRemoveFromCart(id) {
+    dispatch(removeFromCart(id));
+  }
+
+  function handleIncrerment(id) {
+    dispatch(incrementQuantity(id));
+  }
+
+  function handleDecrement(id) {
+    dispatch(decrementQuantity(id));
   }
   return (
     <li className="flex justify-between items-center bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-xl p-1 relative">
@@ -44,7 +67,7 @@ function MenuItem({ pizza }) {
         <AddToCartButton onClick={handleAddToCart}>Add</AddToCartButton>
       )}
 
-      {/* {isInCart && (
+      {isInCart && (
         <div className="flex items-center gap-5 absolute right-10 bottom-7">
           <div className="flex items-center justify-center">
             <DecrementButton onClick={() => handleDecrement(id)} />
@@ -55,7 +78,7 @@ function MenuItem({ pizza }) {
           </div>
           <RemoveFromCartButton onClick={() => handleRemoveFromCart(id)} />
         </div>
-      )} */}
+      )}
     </li>
   );
 }
