@@ -69,8 +69,6 @@ function OrderForm() {
       priority,
       position,
     };
-    // console.log(data);
-
     createOrderApi(data);
   };
   return (

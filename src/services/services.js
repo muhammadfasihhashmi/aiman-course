@@ -13,23 +13,23 @@ export async function getMenu() {
   }
 }
 
-export async function createOrder(order) {
+export async function createOrder(newOrder) {
   try {
-    console.log(order);
-
-    const response = await fetch(`${API_URL}/order`, {
+    const res = await fetch(`${API_URL}/order`, {
       method: "POST",
+      body: JSON.stringify(newOrder),
       headers: {
-        "Contnt-Type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(order),
     });
-    if (!response.ok)
-      throw new Error(`create order api failed with status ${response.status}`);
-    const data = await response.json();
+
+    if (!res.ok) throw Error("can not create order");
+
+    const data = await res.json();
+
     return data;
   } catch (error) {
     console.log(error);
-    throw new Error("something went wrong");
+    throw Error("Failed to create your order");
   }
 }
