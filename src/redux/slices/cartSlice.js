@@ -41,6 +41,10 @@ export const cartSlice = createSlice({
         (item) => item.pizzaId !== action.payload,
       );
     },
+
+    clearCart(state) {
+      state.value = [];
+    },
   },
 });
 
@@ -49,6 +53,7 @@ export const {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
+  clearCart,
 } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
 

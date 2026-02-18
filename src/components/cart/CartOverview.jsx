@@ -1,7 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getTotalItem, getTotalPrice } from "../../redux/slices/cartSlice";
+import { Link } from "react-router";
 
 function CartOverview() {
   const totalPrice = useSelector(getTotalPrice);
